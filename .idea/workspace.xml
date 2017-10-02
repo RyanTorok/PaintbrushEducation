@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="600a69d5-b3b5-4a4f-a6ba-d503d0488d99" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Assignment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/AssignmentWeight.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Attempt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/AttendanceCode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/ClassPd.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/ClassPdInstance.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Course.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Curve.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/DayRegex.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Email.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Expression.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Form.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Grade.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/HousedAssignment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/HousedTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/MCQuestion.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/MSClass.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/MarkingPeriod.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/MasterSchedule.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Person.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/PhoneNumber.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Question.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/QuestionGroup.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/QuestionObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Record.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/RecordEntry.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Runner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/SQL.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/School.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Student.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/Test.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/TestElement.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/TestTimingRule.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/canDisplay.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/mvFunction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/setbuilder/Classifiable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/setbuilder/Condition.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/setbuilder/Set.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/setbuilder/SetBuilder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/db/SQL.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/db/SQLMaster.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/exceptions/AttendanceException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/exceptions/DatabaseException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/exceptions/ExpressionSyntaxException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/exceptions/InconsistentSystemTimeException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/exceptions/SoftlockException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/exceptions/Warning.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/Clock.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/MainView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/Main_Portal.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/PhoneField.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/Portal.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/RecentUpdate.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/StartSettingsWindow.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/WeatherManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/WeatherState.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Administrator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Bluetooth.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Internet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Root.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Student.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/Teacher.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/User.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/UtilAndConstants.java" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SQL.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/db/SQL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main_Portal.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/Main_Portal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="80" column="50" lean-forward="false" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="289" />
+    <option name="y" value="24" />
+    <option name="width" value="1400" />
+    <option name="height" value="1028" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PaintbrushEducation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PaintbrushEducation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PaintbrushEducation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PaintbrushEducation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PaintbrushEducation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PaintbrushEducation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PaintbrushEducation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PaintbrushEducation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$USER_HOME$/prog4" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="600a69d5-b3b5-4a4f-a6ba-d503d0488d99" name="Default" comment="" />
+      <created>1506806618001</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1506806618001</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="289" y="24" width="1863" height="1092" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18807092" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/db/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Main_Portal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="80" column="50" lean-forward="false" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Main_Portal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="80" column="50" lean-forward="false" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Main_Portal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="80" column="50" lean-forward="false" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
