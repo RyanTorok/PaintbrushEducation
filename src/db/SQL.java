@@ -15,13 +15,16 @@ public class SQL {
     static Connection conn;
 
     public static void connect() {
-        String url = "jdbc:mysql://localhost:3306/Paintbrush";
-        String username = "java";
-        String password = "5002MyrQklm";
         try {
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new IllegalStateException("Cannot connect the database!", e);
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "";
+            String username = "root";
+            String password = "5002MyrQklm";
+        }
+        catch (Exception e) {
+            //database does not exist.
+            
+
         }
     }
 
