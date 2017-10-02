@@ -18,7 +18,6 @@ public class SQL {
 
     public static void connect() {
         try {
-<<<<<<< HEAD
             Class.forName("com.mysql.jdbc.Driver");
             String url = "";
             String username = "root";
@@ -26,9 +25,6 @@ public class SQL {
         }
         catch (Exception e) {
             //database does not exist.
-            
-
-=======
             String filename = "./db.sql";
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/localSchema";
@@ -49,7 +45,6 @@ public class SQL {
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
->>>>>>> 3f68caff14474eed01b2ec83478c8c0d9e26177e
         }
     }
 
