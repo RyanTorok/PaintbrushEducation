@@ -9,23 +9,39 @@ import main.User;
 import main.UtilAndConstants;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SQL {
 
     static Connection conn;
 
     public static void connect() {
-        String url = "jdbc:mysql://localhost:3306/Paintbrush";
-        String username = "java";
-        String password = "5002MyrQklm";
         try {
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new IllegalStateException("Cannot connect the database!", e);
+            String filename = "./db.sql";
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/localSchema";
+            String username = "root";
+            String password = "500MyrQklm";
+            try {
+                conn = DriverManager.getConnection(url, username, password);
+            } catch (SQLException e) {
+                //database does not exist
+                try {
+                    url = url.substring(0, url.lastIndexOf("/"));
+                    conn = DriverManager.getConnection(url, username, password);
+                    CallableStatement cs = conn.prepareCall(" { call initializeLocal() }");
+                    cs.execute();
+                } catch (Exception e1) {
+                    throw new IllegalStateException("Cannot connect the database!", e);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void disconnect(){
+    public static void disconnect() {
         try {
             conn.close();
         } catch (SQLException e) {
@@ -44,7 +60,7 @@ public class SQL {
         Statement s;
         s = conn.createStatement();
         String sql = "INSERT INTO Users (`MAC`, `Username`, `Password`, `First`, `Middle`, `Last`, `Email`, `HomePhone`, `CellPhone`, `Address`, `SchoolCode`, `StudentID`) VALUES ('" + Root.getMACAddress() + "', '" + user.getUsername() + "', '"
-                + user.getPassword() + "', '" + user.getFirst() + "', '" + user.getMiddle() + "', '" + user.getLast() + "', '" + user.getEmail() + "', '" + user.getHomePhone() + "', '" + user.getCellphone() + "', '" + user.getSchoolCode() + "', '" + user.getId()+ ");";
+                + user.getPassword() + "', '" + user.getFirst() + "', '" + user.getMiddle() + "', '" + user.getLast() + "', '" + user.getEmail() + "', '" + user.getHomePhone() + "', '" + user.getCellphone() + "', '" + user.getSchoolCode() + "', '" + user.getId() + ");";
         ResultSet rs = s.executeQuery(sql);
     }
 
@@ -78,11 +94,11 @@ public class SQL {
         return active;
     }
 
-    public static boolean userExists(User u){
-        try{
+    public static boolean userExists(User u) {
+        try {
             getUserFromParams(u);
             return true;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -97,7 +113,7 @@ public class SQL {
     public static UtilAndConstants initUtilAndConstants() {
         return null;
     }
-    
+
     public static void newSchedule(classes.MasterSchedule schedule, DayRegex regex) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -105,7 +121,7 @@ public class SQL {
             conn.setAutoCommit(false);
             ps = conn.prepareStatement("Insert into scheduleroot(ScheduleCode, DaySet) Values (?, ?);");
             ps.setString(1, schedule.getScheduleCode());
-            ps.setString(2,regex.toString());
+            ps.setString(2, regex.toString());
             ps.executeUpdate();
             conn.commit();
             ps = conn.prepareStatement("Select `ID` from scheduleroot order by `ID` desc limit 1");
@@ -113,7 +129,7 @@ public class SQL {
             conn.commit();
             ps = conn.prepareStatement("Create table ? (`PeriodID` int(11) Not Null AUTO_INCREMENT, `StartTime` Time Not Null, `EndTime` Time Not Null, `NextPd` int Not Null, Primary Key (`PeriodID`))");
             rs.first();
-            ps.setString(1, "scheduleformat"+rs.getInt("ID"));
+            ps.setString(1, "scheduleformat" + rs.getInt("ID"));
             ps.executeUpdate();
             conn.commit();
         } catch (SQLException e) {
