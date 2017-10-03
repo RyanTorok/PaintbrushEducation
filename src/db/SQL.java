@@ -4,6 +4,7 @@
 package db;
 
 import classes.DayRegex;
+import exceptions.OfflineException;
 import main.Root;
 import main.User;
 import main.UtilAndConstants;
@@ -16,7 +17,7 @@ public class SQL {
 
     static Connection conn;
 
-    public static void connect() {
+    public static void connect() throws OfflineException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "";
@@ -24,27 +25,12 @@ public class SQL {
             String password = "5002MyrQklm";
         }
         catch (Exception e) {
-            //database does not exist.
-            String filename = "./db.sql";
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/localSchema";
-            String username = "root";
-            String password = "500MyrQklm";
-            try {
-                conn = DriverManager.getConnection(url, username, password);
-            } catch (SQLException e) {
-                //database does not exist
-                try {
-                    url = url.substring(0, url.lastIndexOf("/"));
-                    conn = DriverManager.getConnection(url, username, password);
-                    CallableStatement cs = conn.prepareCall(" { call initializeLocal() }");
-                    cs.execute();
-                } catch (Exception e1) {
-                    throw new IllegalStateException("Cannot connect the database!", e);
-                }
+            if (e instanceof ClassNotFoundException){
+                e.printStackTrace();
+                return;
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SQL.class.getName()).log(Level.SEVERE, null, ex);
+            //database does not exist.
+            SQLInstitution.connect();
         }
     }
 

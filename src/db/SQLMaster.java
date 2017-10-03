@@ -1,17 +1,18 @@
 package db;
 
 import classes.School;
+import main.Internet;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by 11ryt on 7/19/2017.
  */
-public class SQLMaster extends SQL {
+public class SQLMaster {
 
     private static Connection overallServerConnection = null;
-    private static Connection remoteDistrictConnection = null;
 
     public static void connectToOverallServer() {
         String url = "jdbc:mysql://localhost:3306/paintbrush_server_master";
@@ -25,58 +26,34 @@ public class SQLMaster extends SQL {
         }
     }
 
-    private static void connectToRemoteDistrictDB(String schoolCode, String password){
-        String url = "jdbc:mysql://localhost:3306/districttestdb";
-        String username = "school_access_" + schoolCode.substring(schoolCode.indexOf("-")+1);
-        try {
-            remoteDistrictConnection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new IllegalStateException("Cannot connect the database!", e);
-        }
+    public static String getInstitutionURL(String nextLine) throws SQLException {
+        if (overallServerConnection == null)
+            connectToOverallServer();
+        PreparedStatement ps = overallServerConnection.prepareStatement("Select `localdbaddress` from `clients` where `authenticationKey` = ?");
+        ps.setString(1, nextLine);
+        ResultSet rs = ps.executeQuery();
+        String urlBase = rs.getString("localdbaddress");
+        return urlBase + "?authenticationKey=" + nextLine + "&sessionID=null";
     }
 
-    public static ArrayList lookUpActivationKey(String text) throws SQLException {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            overallServerConnection.setAutoCommit(false);
-            ps = overallServerConnection.prepareStatement("SELECT `SchoolCode`, `usertype` FROM activationKeys WHERE `activationkey` = ?");
-            ps.setString(1, text);
-            rs = ps.executeQuery();
-            overallServerConnection.commit();
-        } finally {
-            overallServerConnection.setAutoCommit(true);
-        }
-        ArrayList al = new ArrayList();
-        if(rs.first()){
-            String wholeSC = rs.getString("SchoolCode");
-            String districtCode = wholeSC.substring(0, wholeSC.indexOf("-"));
-            String schoolIdentifier = wholeSC.substring(wholeSC.indexOf("-")+1);
-            PreparedStatement ps2 = null;
-            ResultSet rs2 = null;
-            try {
-                connectToRemoteDistrictDB(wholeSC, text);
-                remoteDistrictConnection.setAutoCommit(false);
-                ps2 = remoteDistrictConnection.prepareStatement("SELECT * FROM schools WHERE `SchoolCode` = ?");
-                ps2.setString(1, schoolIdentifier);
-                rs2 = ps2.executeQuery();
-                remoteDistrictConnection.commit();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                overallServerConnection.setAutoCommit(true);
-            }
-            rs2.first();
-            al.add(new School(rs2.getString("Name")));
-            ps2.close();
-            al.add(rs.getInt("usertype"));
-            ps.close();
-        } else{
-            ps.close();
-            al.add(null);
-            al.add(-1);
-        }
+    public static String createNewClient(String name) throws SQLException {
+        if (overallServerConnection == null)
+            connectToOverallServer();
 
-        return al;
+        //generate random authentication key
+        StringBuffer keySB = new StringBuffer();
+        String availableChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        availableChars += availableChars.toLowerCase() + "1234567890";
+        for (int i = 0; i < 255; i++) {
+            Random random = new Random();
+            random.setSeed((long) (Math.random() * Long.MAX_VALUE));
+            keySB.append(availableChars.charAt(random.nextInt(availableChars.length())));
+        }
+        PreparedStatement ps = overallServerConnection.prepareStatement("Insert into `clients` (`name`, `authenticationKey`, `localdbaddress`) values " +
+                "(?, ?, ?);");
+        ps.setString(1, name);
+        ps.setString(2, keySB.toString());
+        ps.setString(3, Internet.URL_Root + "/lookup/" + name + ".php");
+
     }
 }

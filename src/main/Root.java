@@ -1,6 +1,7 @@
 package main;
 
 import db.SQL;
+import exceptions.OfflineException;
 import gui.Main_Portal;
 import javafx.stage.Stage;
 
@@ -24,25 +25,15 @@ public class Root {
     public static void main(String[] args) {
         portal = new Main_Portal();
         activeFrame = getPortal();
-        SQL.connect();
+        try {
+            SQL.connect();
+        } catch (OfflineException e) {
+            //TODO setup offline setup edge case handle
+            e.printStackTrace();
+        }
         utilAndConstants = SQL.initUtilAndConstants();
         String mac = getMACAddress();
-       /* try {
-            User active = SQL.getUser(mac);
-        } catch (SQLException e) {
-            try {
-                User temp = portal.getPanel().newUser();
-                System.out.println(temp.getUsername());
-                active = SQL.getUserFromParams(temp);
-                if (active != null) {
-                    SQL.addMacAddress(active, mac);
-                } else {
-                    SQL.add(temp);
-                }
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }*/
+        
        portal.run();
     }
 
