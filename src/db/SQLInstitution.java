@@ -1,6 +1,7 @@
 package db;
 
 import exceptions.OfflineException;
+import main.UtilAndConstants;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -15,7 +16,7 @@ public class SQLInstitution {
     public static void connect() throws OfflineException {
         if (url == null) {
             try {
-                BufferedReader reader = new BufferedReader(new FileReader("LocalInitializationSchema.pbr"));
+                BufferedReader reader = new BufferedReader(new FileReader(UtilAndConstants.parseFileNameForOS(".\\src\\main\\LocalInitializationSchema.pbr")));
                 StringBuffer sb = new StringBuffer();
                 String nextLine = reader.readLine();
                 int commentIndex = nextLine.indexOf("//");

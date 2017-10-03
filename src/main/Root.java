@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 
 /**
@@ -20,9 +23,11 @@ public class Root {
     private static UtilAndConstants utilAndConstants;
     private static User active = null;
     private static Main_Portal portal;
+    private static String macAddress;
 
 
     public static void main(String[] args) {
+        String startupError = null;
         portal = new Main_Portal();
         activeFrame = getPortal();
         try {
@@ -32,25 +37,47 @@ public class Root {
             e.printStackTrace();
         }
         utilAndConstants = SQL.initUtilAndConstants();
-        String mac = getMACAddress();
-        
-       portal.run();
+        try {
+            macAddress = searchForMACAddress();
+        } catch (Exception e) {
+            startupError = e.getMessage();
+        }
+        if (startupError == null)
+            portal.run();
+        else
+            portal.run("errortest");
     }
 
-    public static String getMACAddress() {
-        try {
-            InetAddress ip6 = Inet6Address.getLocalHost();
-            NetworkInterface nwi = NetworkInterface.getByInetAddress(ip6);
-            byte mac[] = nwi.getHardwareAddress();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < mac.length; i++) {
-                sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+    public static String searchForMACAddress() throws SocketException {
+        String firstInterface = null;
+        Map<String, String> addressByNetwork = new HashMap<>();
+        Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+
+        while (networkInterfaces.hasMoreElements()) {
+            NetworkInterface network = networkInterfaces.nextElement();
+
+            byte[] bmac = network.getHardwareAddress();
+            if (bmac != null) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < bmac.length; i++) {
+                    sb.append(String.format("%02X%s", bmac[i], (i < bmac.length - 1) ? "-" : ""));
+                }
+
+                if (sb.toString().isEmpty() == false) {
+                    addressByNetwork.put(network.getName(), sb.toString());
+                }
+
+                if (sb.toString().isEmpty() == false && firstInterface == null) {
+                    firstInterface = network.getName();
+                }
             }
-            return sb.toString();
-        } catch (IOException e) {
-            System.out.println("Error accessing system identifying information.");
-            return "";
         }
+
+        if (firstInterface != null) {
+            return addressByNetwork.get(firstInterface);
+        }
+
+        return null;
     }
 
     public static Integer getActiveID() {
@@ -71,5 +98,13 @@ public class Root {
 
     public static User getActiveUser() {
         return active;
+    }
+
+    public static String getMACAddress() {
+        return macAddress;
+    }
+
+    public static void setMACAddress(String macAddress) {
+        Root.macAddress = macAddress;
     }
 }

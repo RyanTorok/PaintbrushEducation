@@ -188,11 +188,7 @@ public class Portal extends JPanel {
                         portal.add(serverErrorMsg, c);
                         portal.validate();
                     }
-                    try {
-                        utAndSchool = SQLMaster.lookUpActivationKey(activationKeyField.getText());
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
+                    utAndSchool = SQLMaster.lookUpActivationKey(activationKeyField.getText());
                     // the arraylist returned by the above call has the School object in position 0 and the usertype code in position 1. In the event an invalid code is entered by the user, the arraylist is set to [null, -1].
                     classes.School selectedSchool = (School) utAndSchool.get(0);
                     if (selectedSchool == null) {

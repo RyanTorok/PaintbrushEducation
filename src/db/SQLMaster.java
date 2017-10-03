@@ -36,7 +36,7 @@ public class SQLMaster {
         return urlBase + "?authenticationKey=" + nextLine + "&sessionID=null";
     }
 
-    public static String createNewClient(String name) throws SQLException {
+    public static void createNewClient(String name) throws SQLException {
         if (overallServerConnection == null)
             connectToOverallServer();
 
@@ -55,5 +55,9 @@ public class SQLMaster {
         ps.setString(2, keySB.toString());
         ps.setString(3, Internet.URL_Root + "/lookup/" + name + ".php");
 
+    }
+
+    public static ArrayList lookUpActivationKey(String text) {
+        return null;
     }
 }

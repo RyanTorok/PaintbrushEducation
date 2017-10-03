@@ -6,6 +6,7 @@ package db;
 import classes.DayRegex;
 import exceptions.OfflineException;
 import main.Root;
+import main.UnsupportedOSException;
 import main.User;
 import main.UtilAndConstants;
 
@@ -20,9 +21,10 @@ public class SQL {
     public static void connect() throws OfflineException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "";
+            String url = "jdbc:mysql://localhost:3306/localblah?autoReconnect=true&useSSL=false";
             String username = "root";
             String password = "5002MyrQklm";
+            conn = DriverManager.getConnection(url, username, password);
         }
         catch (Exception e) {
             if (e instanceof ClassNotFoundException){
@@ -30,7 +32,19 @@ public class SQL {
                 return;
             }
             //database does not exist.
-            SQLInstitution.connect();
+            //SQLInstitution.connect();
+            String url = "jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false";
+            String username = "root";
+            String password = "5002MyrQklm";
+            try {
+                conn = DriverManager.getConnection(url, username, password);
+                PreparedStatement ps = conn.prepareStatement("\\. sqlScripts/initLocal.sql");
+                ps.execute();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+                return;
+            }
+            //connect();
         }
     }
 
@@ -49,7 +63,7 @@ public class SQL {
         return castToUserOfType(rs);
     }
 
-    public static void add(User user) throws SQLException {
+    public static void add(User user) throws SQLException, UnsupportedOSException {
         Statement s;
         s = conn.createStatement();
         String sql = "INSERT INTO Users (`MAC`, `Username`, `Password`, `First`, `Middle`, `Last`, `Email`, `HomePhone`, `CellPhone`, `Address`, `SchoolCode`, `StudentID`) VALUES ('" + Root.getMACAddress() + "', '" + user.getUsername() + "', '"
