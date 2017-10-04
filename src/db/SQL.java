@@ -40,7 +40,7 @@ public class SQL {
                 conn = DriverManager.getConnection(url, username, password);
                 PreparedStatement ps = conn.prepareStatement("\\. sqlScripts/initLocal.sql");
                 ps.execute();
-            } catch (SQLException e1) {
+            } catch (Exception e1) {
                 e1.printStackTrace();
                 return;
             }
