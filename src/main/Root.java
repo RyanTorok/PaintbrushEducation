@@ -1,16 +1,12 @@
 package main;
 
 import db.SQL;
-import exceptions.OfflineException;
 import gui.Main_Portal;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.*;
+import java.sql.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.*;
 
 /**
  * Created by 11ryt on 4/14/2017.
@@ -30,18 +26,22 @@ public class Root {
         String startupError = null;
         portal = new Main_Portal();
         activeFrame = getPortal();
-        try {
-            SQL.connect();
+        /*try {
+           // SQL.connect();
         } catch (OfflineException e) {
             //TODO setup offline setup edge case handle
             e.printStackTrace();
-        }
+        }*/
         utilAndConstants = SQL.initUtilAndConstants();
         try {
             macAddress = searchForMACAddress();
         } catch (Exception e) {
             startupError = e.getMessage();
         }
+        //TODO intialize active user
+        active = new Student();
+        active.setBirthday(new Date(System.currentTimeMillis()));
+        
         if (startupError == null)
             portal.run();
         else

@@ -20,10 +20,10 @@ public class SQL {
 
     public static void connect() throws OfflineException {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/localblah?autoReconnect=true&useSSL=false";
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            String url = "jdbc:derby://localhost:3306/myDB;create=false;";
             String username = "root";
-            String password = "5002MyrQklm";
+            String password = "";
             conn = DriverManager.getConnection(url, username, password);
         }
         catch (Exception e) {
@@ -33,7 +33,7 @@ public class SQL {
             }
             //database does not exist.
             //SQLInstitution.connect();
-            String url = "jdbc:mysql://localhost:3306?autoReconnect=true&useSSL=false";
+            String url = "jdbc:derby://localhost:3306/myDB;create=true;";
             String username = "root";
             String password = "5002MyrQklm";
             try {

@@ -22,6 +22,9 @@ public class Student extends User {
 
     }
 
+    Student() {
+    }
+
     @Override
     public String getID() {
         return studentID;

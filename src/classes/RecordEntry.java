@@ -17,4 +17,8 @@ public class RecordEntry {
         this.entry = entry;
         this.timestamp = timestamp;
     }
+    
+    public String toString() {
+        return triggeredBy.getName() + entry + "at " + timestamp.toString();
+    }
 }

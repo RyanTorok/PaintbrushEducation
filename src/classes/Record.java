@@ -14,10 +14,10 @@ public abstract class Record implements ActionListener{
     private ArrayList<RecordEntry> history;
 
     protected Record() {
-
+        
     }
 
     public void createUpdate(String record, User triggeredBy){
-            history.add(new RecordEntry(triggeredBy, record, new Timestamp(Clock.currentSafeTime())));
+        history.add(new RecordEntry(triggeredBy, record, new Timestamp(Clock.currentSafeTime())));
     }
 }

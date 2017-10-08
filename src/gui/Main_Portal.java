@@ -1,5 +1,6 @@
 package gui;
 
+import classes.Record;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -23,10 +24,14 @@ import main.User;
 import main.UtilAndConstants;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Optional;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Created by 11ryt on 4/1/2017.
@@ -35,6 +40,9 @@ public class Main_Portal extends Application implements Runnable {
 
     private static int hour;
     private static Date current;
+
+    public Main_Portal() {
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -53,7 +61,16 @@ public class Main_Portal extends Application implements Runnable {
         primaryStage.setMaximized(true);
 
         //start screen background image
-        Image backgroundImg = new Image(new FileInputStream(UtilAndConstants.parseFileNameForOS(".\\StartScreenImages\\Sunny_" + hour + ".png")));
+        Image backgroundImg;
+        try {
+            backgroundImg = new Image(new FileInputStream(UtilAndConstants.parseFileNameForOS(".\\StartScreenImages\\Sunny_" + hour + ".png")));
+        } catch (FileNotFoundException e) {
+            try {
+                backgroundImg = new Image(new FileInputStream(UtilAndConstants.parseFileNameForOS(".\\StartScreenImages\\DefaultStartBkgd.png")));
+            } catch (FileNotFoundException e1) {
+                backgroundImg = null;
+            }
+        }
         GridPane bkrd = new GridPane();
         ImageView img = new ImageView(backgroundImg);
         img.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
@@ -82,11 +99,43 @@ public class Main_Portal extends Application implements Runnable {
         //RecentUpdates and UpcomingEvents Pane
         GridPane rugrid = new GridPane();
         ArrayList<Node> ruNodes = new ArrayList();
-        ruNodes.add(new Text("hello"));
+        ruNodes.add(new Text("Recent Updates"));
+        if (Root.getActiveUser().getUpdates() != null && !Root.getActiveUser().getUpdates().isEmpty()) {
+            for (Record r : Root.getActiveUser().getUpdates()) {
+                ruNodes.add(new Text(r.toString()));
+            }
+        } else {
+            ruNodes.add(new Text("No recent updates."));
+        }
         Group recentUpdatesPane = new Group(ruNodes);
         SubScene ss = new SubScene(recentUpdatesPane, Screen.getPrimary().getVisualBounds().getWidth() / 4, Screen.getPrimary().getVisualBounds().getHeight() / 4);
-        grid.add(recentUpdatesPane, 1, 0);
-
+        ss.setFill(Color.AQUA);
+        ss.setOpacity(0.5);
+        ss.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ss.setOpacity(1);
+            }
+        });
+        ss.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ss.setOpacity(0.75);
+            }
+        });
+        grid.add(ss, 1, 0);
+        
+        //time and date
+        GridPane tdGrid = new GridPane();
+        ArrayList<Node> tdNodes = new ArrayList();
+        Text time = new Text(new SimpleDateFormat((Root.getUtilAndConstants() == null || Root.getUtilAndConstants().getStartScreenTimeFormat() == null ? "HH:MM:SS" : Root.getUtilAndConstants().getStartScreenTimeFormat())).format(new Time(Clock.currentSafeTime())));
+        time.setFill(Color.WHITE);
+        time.setFont(Font.font("Lucida HandWriting", FontWeight.BOLD, parseFontSize(tdGrid, 100)));
+        tdNodes.add(time);
+        Group td = new Group(tdNodes);
+        SubScene tdss = new SubScene(td, Screen.getPrimary().getVisualBounds().getWidth() / 2, Screen.getPrimary().getVisualBounds().getHeight() / 2);
+        time.setLayoutY(tdss.getHeight() / 2);
+        grid.add(tdss, 0, 2);
         bkrd.add(fgrd, 0, 0);
         primaryStage.show();
     }
@@ -130,8 +179,9 @@ public class Main_Portal extends Application implements Runnable {
                 timeMessage = "Welcome";
         }
         if (activeUser != null) {
-            if (new SimpleDateFormat("MM/DD").format(activeUser.getBirthday()).equals(new SimpleDateFormat("MM/DD").format(current)))
-                return "Happy Birthday, " + activeUser.getFirst() + "!";
+            if (new SimpleDateFormat("MM/DD").format(activeUser.getBirthday()).equals(new SimpleDateFormat("MM/DD").format(current))) {
+                return "Happy Birthday" + ((activeUser.getFirst() != null) ? ", " + activeUser.getFirst() : "") + "!";
+            }
             return timeMessage + ", " + activeUser.getFirst();
         } else {
             return timeMessage;
@@ -152,7 +202,8 @@ public class Main_Portal extends Application implements Runnable {
     public void run(String errorMsg) {
         Alert error = new Alert(Alert.AlertType.ERROR, "Fatal Error: " + errorMsg);
         Optional<ButtonType> result = error.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             System.exit(-2);
+        }
     }
 }

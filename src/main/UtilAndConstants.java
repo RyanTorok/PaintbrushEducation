@@ -11,10 +11,33 @@ import java.util.ArrayList;
  */
 public class UtilAndConstants {
 
-    private final int MAX_ATTENDANCE_EXTRA_TIME;
+    /**
+     * @return the operatingSystem
+     */
+    public static String getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    /**
+     * @param aOperatingSystem the operatingSystem to set
+     */
+    public static void setOperatingSystem(String aOperatingSystem) {
+        operatingSystem = aOperatingSystem;
+    }
+
+    /**
+     * @param aStartScreenTimeFormat the startScreenTimeFormat to set
+     */
+    public static void setStartScreenTimeFormat(String aStartScreenTimeFormat) {
+        startScreenTimeFormat = aStartScreenTimeFormat;
+    }
+
+    private int MAX_ATTENDANCE_EXTRA_TIME;
     private ArrayList<String> attendanceCodes;
-    private final Time attendanceStartTime;
+    private Time attendanceStartTime;
     private static String operatingSystem;
+    
+    private static String startScreenTimeFormat;
 
     public UtilAndConstants(int mAET, ArrayList<String> attendanceCodes, Time attendanceStartTime) {
         MAX_ATTENDANCE_EXTRA_TIME = mAET;
@@ -23,10 +46,10 @@ public class UtilAndConstants {
     }
 
     public static String parseFileNameForOS(String fn) {
-        if (operatingSystem == null) {
+        if (getOperatingSystem() == null) {
             initOS();
         }
-        switch (operatingSystem) {
+        switch (getOperatingSystem()) {
             case "win":
                 return fn;
             case "linux":
@@ -43,11 +66,11 @@ public class UtilAndConstants {
     private static void initOS() {
         String os = System.getProperty("os.name").toLowerCase();
         if(os.indexOf("win") >= 0)
-            operatingSystem = "win";
+            setOperatingSystem("win");
         else if(os.indexOf("linux") >= 0)
-            operatingSystem = "linux";
+            setOperatingSystem("linux");
         else if (os.indexOf("mac") >= 0)
-            operatingSystem = "mac";
+            setOperatingSystem("mac");
     }
 
     public int getMAX_ATTENDANCE_EXTRA_TIME() {
@@ -106,7 +129,7 @@ public class UtilAndConstants {
     }
 
     public String getAttendanceCodes(int i) {
-        return attendanceCodes.get(i);
+        return getAttendanceCodes().get(i);
     }
 
     public Time getAttendanceStartTime() {
@@ -115,5 +138,37 @@ public class UtilAndConstants {
 
     public MasterSchedule getTodaysSchedule() {
         return null;
+    }
+
+    public String getStartScreenTimeFormat() {
+        return startScreenTimeFormat;
+    }
+
+    /**
+     * @param MAX_ATTENDANCE_EXTRA_TIME the MAX_ATTENDANCE_EXTRA_TIME to set
+     */
+    public void setMAX_ATTENDANCE_EXTRA_TIME(int MAX_ATTENDANCE_EXTRA_TIME) {
+        this.MAX_ATTENDANCE_EXTRA_TIME = MAX_ATTENDANCE_EXTRA_TIME;
+    }
+
+    /**
+     * @return the attendanceCodes
+     */
+    public ArrayList<String> getAttendanceCodes() {
+        return attendanceCodes;
+    }
+
+    /**
+     * @param attendanceCodes the attendanceCodes to set
+     */
+    public void setAttendanceCodes(ArrayList<String> attendanceCodes) {
+        this.attendanceCodes = attendanceCodes;
+    }
+
+    /**
+     * @param attendanceStartTime the attendanceStartTime to set
+     */
+    public void setAttendanceStartTime(Time attendanceStartTime) {
+        this.attendanceStartTime = attendanceStartTime;
     }
 }
