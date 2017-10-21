@@ -1,7 +1,7 @@
 package main;
 
 import classes.Record;
-import java.awt.*;
+import javafx.scene.paint.Color;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;

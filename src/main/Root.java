@@ -2,8 +2,11 @@ package main;
 
 import db.SQL;
 import gui.Main_Portal;
+import javafx.scene.paint.Color;
+
 import java.net.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +43,8 @@ public class Root {
         }
         //TODO intialize active user
         active = new Student();
-        active.setBirthday(new Date(System.currentTimeMillis()));
+        active.setBirthday(new Date(0));
+        active.setAccentColor(new Color(218/255.0, 213/255.0, 237/255.0, 1));
         
         if (startupError == null)
             portal.run();

@@ -3,6 +3,7 @@ package gui;
 import classes.Record;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,10 +12,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -23,6 +26,7 @@ import main.Root;
 import main.User;
 import main.UtilAndConstants;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Date;
@@ -79,22 +83,36 @@ public class Main_Portal extends Application implements Runnable {
         primaryStage.setScene(new Scene(bkrd));
 
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setBorder(Border.EMPTY);
+        grid.setHgap(0);
+        grid.setVgap(0);
         StackPane fgrd = new StackPane(grid);
+
+        //topbar
+        GridPane topbar = new GridPane();
+        topbar.setAlignment(Pos.TOP_CENTER);
+        ArrayList<Node> topbarNodes = new ArrayList();
+        topbarNodes.add(topbar);
+        Group topbarGroup = new Group(topbarNodes);
+        SubScene topbarScene = new SubScene(topbarGroup, Screen.getPrimary().getVisualBounds().getWidth(), Screen.getPrimary().getVisualBounds().getWidth() / 20);
+        Color topbarBkgdColor = (Root.getActiveUser() == null || Root.getActiveUser().getAccentColor() == null) ? Color.LIGHTGRAY : Root.getActiveUser().getAccentColor();
+        topbarScene.setFill(topbarBkgdColor);
+        topbarScene.setTranslateY(-1 * Screen.getPrimary().getVisualBounds().getHeight()/12.5);
+        grid.setStyle("border: 0em 0em 10em 0em");
+
 
         //welcome message in top left corner
         Text welcomeTitle = new Text(getWelcomeMessage(Root.getActiveUser()));
         welcomeTitle.setFill(Color.WHITE);
-        welcomeTitle.setFont(Font.font("Segoe UI", FontWeight.BOLD, parseFontSize(grid, 100)));
-        grid.add(welcomeTitle, 0, 0);
+        welcomeTitle.setFont(Font.font("Segoe UI", FontWeight.BOLD, parseFontSize(grid, 20)));
+        welcomeTitle.setStyle("font-family: Wingdings");
+        topbar.add(welcomeTitle, 0, 0);
 
         //subtitle under welcome message
-        Text subtitle = new Text("Let's get something done " + (hour > 6 && hour < 21 ? "today." : "tonight."));
+        Text subtitle = new Text(" Let's get something done " + (hour > 6 && hour < 21 ? "today." : "tonight."));
         subtitle.setFill(Color.WHITE);
-        subtitle.setFont(Font.font("Lucida Handwriting", FontWeight.BOLD, parseFontSize(grid, 60)));
-        grid.add(subtitle, 0, 1);
+        subtitle.setFont(Font.font("Lucida Handwriting", FontPosture.ITALIC, parseFontSize(grid, 20)));
+        topbar.add(subtitle, 1, 0);
 
         //RecentUpdates and UpcomingEvents Pane
         GridPane rugrid = new GridPane();
@@ -128,13 +146,15 @@ public class Main_Portal extends Application implements Runnable {
         //time and date
         GridPane tdGrid = new GridPane();
         ArrayList<Node> tdNodes = new ArrayList();
-        Text time = new Text(new SimpleDateFormat((Root.getUtilAndConstants() == null || Root.getUtilAndConstants().getStartScreenTimeFormat() == null ? "HH:MM:SS" : Root.getUtilAndConstants().getStartScreenTimeFormat())).format(new Time(Clock.currentSafeTime())));
+        Text time = new Text(new SimpleDateFormat((Root.getUtilAndConstants() == null || Root.getUtilAndConstants().getStartScreenTimeFormat() == null ? "HH:MM" : Root.getUtilAndConstants().getStartScreenTimeFormat())).format(new Time(Clock.currentSafeTime())));
         time.setFill(Color.WHITE);
         time.setFont(Font.font("Lucida HandWriting", FontWeight.BOLD, parseFontSize(tdGrid, 100)));
         tdNodes.add(time);
         Group td = new Group(tdNodes);
         SubScene tdss = new SubScene(td, Screen.getPrimary().getVisualBounds().getWidth() / 2, Screen.getPrimary().getVisualBounds().getHeight() / 2);
         time.setLayoutY(tdss.getHeight() / 2);
+
+        grid.add(topbarScene, 0,0);
         grid.add(tdss, 0, 2);
         bkrd.add(fgrd, 0, 0);
         primaryStage.show();
@@ -178,13 +198,13 @@ public class Main_Portal extends Application implements Runnable {
             default:
                 timeMessage = "Welcome";
         }
-        if (activeUser != null) {
+        if (activeUser != null && activeUser.getFirst() != null) {
             if (new SimpleDateFormat("MM/DD").format(activeUser.getBirthday()).equals(new SimpleDateFormat("MM/DD").format(current))) {
                 return "Happy Birthday" + ((activeUser.getFirst() != null) ? ", " + activeUser.getFirst() : "") + "!";
             }
             return timeMessage + ", " + activeUser.getFirst();
         } else {
-            return timeMessage;
+            return timeMessage + ".";
         }
     }
 
