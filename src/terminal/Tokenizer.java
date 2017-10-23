@@ -6,13 +6,23 @@ public class Tokenizer {
 
     private ArrayList<Token> tokens;
 
-    private Token parseToken(String s) {
-
+    private Token parseToken(String s) throws TerminalException {
+        if (s.charAt(0) == '\\')
+            return Tag.fromString(s.substring(1));
+        switch (s) {
+            case "mkdir":
+                return new Command(Command.CommandType.MKDIR);
+            case "ls": return new Command(Command.CommandType.LS);
+            case "cd": return new Command(Command.CommandType.CD);
+            case "new": return new Command(Command.CommandType.NEW);
+                default:
+        }
+        throw new TerminalException("unexpected token: " + s);
     }
 
-    public void loadCommand(String input) {
+    public void loadCommand(String input) throws TerminalException {
         setTokens(new ArrayList<>());
-        String[] split = input.trim().split("\\s+");
+        String[] split = input.trim().split("[^A-Za-z0-9]|\\s+");
         for (String s : split) {
             getTokens().add(parseToken(s));
         }
