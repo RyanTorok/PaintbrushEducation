@@ -15,9 +15,9 @@ public class SQLMaster {
     private static Connection overallServerConnection = null;
 
     public static void connectToOverallServer() {
-        String url = "jdbc:mysql://localhost:3306/paintbrush_server_master";
+        String url = "jdbc:mysql://localhost:3306/paintbrush_server";
         String username = "java_server_master";
-        String password = "zg7PvdMZeZg76p1f";
+        String password = "Vzg7PvdMZeZg76p1f%";
         try {
             overallServerConnection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class SQLMaster {
             random.setSeed((long) (Math.random() * Long.MAX_VALUE));
             keySB.append(availableChars.charAt(random.nextInt(availableChars.length())));
         }
-        PreparedStatement ps = overallServerConnection.prepareStatement("Insert into `clients` (`name`, `authenticationKey`, `localdbaddress`) values " +
+        PreparedStatement ps = overallServerConnection.prepareStatement("Insert into `client_assoc` (`name`, `authenticationKey`, `localdbaddress`) values " +
                 "(?, ?, ?);");
         ps.setString(1, name);
         ps.setString(2, keySB.toString());

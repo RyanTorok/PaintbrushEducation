@@ -1,12 +1,10 @@
-package terminal;
+/*package terminal;
 
 import filesystem.FileSystemParser;
-import gui.TerminalGUI;
 import javafx.scene.paint.Color;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class Terminal {
 
@@ -15,16 +13,19 @@ public class Terminal {
     private BufferedOutputStream writer;
 
     public void execute(String command) throws IOException {
-        getTok().loadCommand(command);
+        try {
+            getTok().loadCommand(command);
+        } catch (TerminalException e) {
+            e.printStackTrace();
+        }
         int tokensIndex = 0;
         for (Token t : getTok().getTokens()) {
             switch (t.getType()) {
-                case COMMAND: {
+                /*case COMMAND: {
                     try {
                         if (tokensIndex == getTok().getTokens().size())
-                            Command.parseCommand(t).execute(null, this);
-                        else
-                            Command.parseCommand(t).execute(getTok().getTokens().subList(tokensIndex + 1, getTok().getTokens().size()), this);
+                           Command.parseCommand(t).execute(null, this);
+                        else Command.parseCommand(t).execute(getTok().getTokens().subList(tokensIndex + 1, getTok().getTokens().size()), this);
                     } catch (TerminalException e) {
                         output("Error: " + e.getMessage(), Color.RED);
                     }
@@ -34,7 +35,7 @@ public class Terminal {
         }
     }
 
-    public Terminal(FileSystemParser fileSystemParser, TerminalGUI gui) {
+    public Terminal(FileSystemParser fileSystemParser, Terminal gui) {
         this.fileSystemParser = fileSystemParser;
         tok = new Tokenizer();
         writer = gui.getOutputStream();
@@ -73,3 +74,4 @@ public class Terminal {
         return writer;
     }
 }
+*/

@@ -2,6 +2,7 @@ package main;
 
 import classes.AttendanceCode;
 import classes.ClassPd;
+import classes.UtilScheduler;
 import exceptions.AttendanceException;
 
 import java.sql.Time;
@@ -13,13 +14,26 @@ import java.sql.Timestamp;
 public class Student extends User {
     private String studentID;
 
-    public Student(int id, String mac, String username, String password, String first, String middle, String last, String email, String homephone, String cellphone, String address, String studentID, Timestamp timestamp) {
-        super(id, mac, username, password, first, middle, last, email, homephone, cellphone, address, timestamp);
-        this.studentID = studentID;
+    public UtilScheduler.StudentSchedulePackage getSavedSSP() {
+        return savedSSP;
     }
 
-    public Student(int id, String mac, String username, String password, String first, String middle, String last, String email, String homePhone, String cellPhone, String address, String schoolCode, String studentID, Timestamp timestamp) {
+    public void setSavedSSP(UtilScheduler.StudentSchedulePackage savedSSP) {
+        this.savedSSP = savedSSP;
+    }
 
+    private UtilScheduler.StudentSchedulePackage savedSSP;
+
+    public int getGrade() {
+        return grade;
+    }
+
+    private int grade;
+
+    public Student(int id, String mac, String username, String password, String first, String middle, String last, String email, String homephone, String cellphone, String address, Timestamp timestamp, String studentID, int grade) {
+        super(id, mac, username, password, first, middle, last, email, homephone, cellphone, address, timestamp);
+        this.studentID = studentID;
+        this.grade = grade;
     }
 
     Student() {

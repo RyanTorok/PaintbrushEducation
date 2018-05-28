@@ -1,4 +1,4 @@
-package gui;
+/*package gui;
 
 import classes.School;
 import db.SQLMaster;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by 11ryt on 4/15/2017.
  */
-public class Portal extends JPanel {
+/*public class Portal extends JPanel {
 
     private Integer state; // 0: Loading, 1: Main Screen, 2: Test
     private BufferedImage loadingImg;
@@ -290,7 +290,7 @@ public class Portal extends JPanel {
                 9: Create Password
                10: Confirm Password
              */
-            boolean[][] displaywhat = {
+            /*boolean[][] displaywhat = {
                     {true, true, true, true, true, true, true, true, true, true, true},
                     {true, true, true, true, true, true, true, true, true, true, true},
                     {true, true, true, false, true, true, true, true, true, true, true},
@@ -391,4 +391,4 @@ public class Portal extends JPanel {
             super(gbl);
         }
     }
-}
+}*/

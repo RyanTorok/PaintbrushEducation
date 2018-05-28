@@ -11,4 +11,9 @@ public class LineMenu {
     public LineMenu() {
         items = new ArrayList();
     }
+
+    public LineMenu(double linePrice) {
+        items = new ArrayList<>();
+        this.linePrice = linePrice;
+    }
 }

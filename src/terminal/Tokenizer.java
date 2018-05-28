@@ -6,17 +6,15 @@ public class Tokenizer {
 
     private ArrayList<Token> tokens;
 
-    private Token parseToken(String s) throws TerminalException {
+    private Token parseToken(String s, boolean inst) throws TerminalException {
         if (s.charAt(0) == '\\')
             return Tag.fromString(s.substring(1));
-        switch (s) {
-            case "mkdir":
-                return new Command(Command.CommandType.MKDIR);
-            case "ls": return new Command(Command.CommandType.LS);
-            case "cd": return new Command(Command.CommandType.CD);
-            case "new": return new Command(Command.CommandType.NEW);
-                default:
+        if (inst) {
+            switch (s) {
+                case "ls": return new Token();
+            }
         }
+
         throw new TerminalException("unexpected token: " + s);
     }
 
@@ -34,5 +32,8 @@ public class Tokenizer {
 
     public void setTokens(ArrayList<Token> tokens) {
         this.tokens = tokens;
+    }
+
+    public Command get() {
     }
 }

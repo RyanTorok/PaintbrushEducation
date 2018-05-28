@@ -1,12 +1,12 @@
 package main;
 
-import db.SQL;
-import gui.Main_Portal;
+import classes.SQL;
+import db.SQLLocal;
+import gui.Main;
 import javafx.scene.paint.Color;
 
 import java.net.*;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,24 +18,22 @@ import java.util.Map;
 public class Root {
 
     private static Integer activeID;
-    private static Main_Portal activeFrame;
+    private static Main activeFrame;
     private static UtilAndConstants utilAndConstants;
     private static User active = null;
-    private static Main_Portal portal;
+    private static Main portal;
     private static String macAddress;
 
 
     public static void main(String[] args) {
         String startupError = null;
-        portal = new Main_Portal();
-        activeFrame = getPortal();
         /*try {
            // SQL.connect();
         } catch (OfflineException e) {
             //TODO setup offline setup edge case handle
             e.printStackTrace();
         }*/
-        utilAndConstants = SQL.initUtilAndConstants();
+        //utilAndConstants = SQL.initUtilAndConstants();
         try {
             macAddress = searchForMACAddress();
         } catch (Exception e) {
@@ -45,11 +43,8 @@ public class Root {
         active = new Student();
         active.setBirthday(new Date(0));
         active.setAccentColor(new Color(218/255.0, 213/255.0, 237/255.0, 1));
-        
-        if (startupError == null)
-            portal.run();
-        else
-            portal.run("errortest");
+
+        portal.main(new String[]{startupError});
     }
 
     public static String searchForMACAddress() throws SocketException {
@@ -96,7 +91,7 @@ public class Root {
         return utilAndConstants;
     }
 
-    public static Main_Portal getPortal() {
+    public static Main getPortal() {
         return portal;
     }
 

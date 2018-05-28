@@ -10,9 +10,19 @@ import java.util.ArrayList;
 
 public class ClassPd {
 
+
     private Course castOf;
     private ArrayList<Student> studentList;
     private int periodNo;
+    private int capacity;
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 
     public classes.ClassPdInstance getTodaysInstance() {
         return null;
@@ -21,11 +31,24 @@ public class ClassPd {
     public ArrayList<Student> getStudentList() {
         return studentList;
     }
+
     public Course getCastOf(){
         return castOf;
     }
 
     public int getPeriodNo() {
         return periodNo;
+    }
+
+    public void setCastOf(Course castOf) {
+        this.castOf = castOf;
+    }
+
+    public void setStudentList(ArrayList<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public void setPeriodNo(int periodNo) {
+        this.periodNo = periodNo;
     }
 }

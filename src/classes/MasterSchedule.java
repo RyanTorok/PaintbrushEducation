@@ -15,11 +15,11 @@ public class MasterSchedule {
         schedule = new ArrayList<MSClass>();
         //regex format: [classPd(startTime,endTime,nextClassPd)]
         for (int i = 0; i < scheduleRegex.length(); i++) {
-            if(scheduleRegex.charAt(i) == '['){
+            if (scheduleRegex.charAt(i) == '[') {
                 int j = i;
-                while(scheduleRegex.charAt(j) != ']')
+                while (scheduleRegex.charAt(j) != ']')
                     j++;
-                schedule.add(resolveClassRegex(scheduleRegex.substring(i+1, j)));
+                schedule.add(resolveClassRegex(scheduleRegex.substring(i + 1, j)));
             }
         }
     }
@@ -44,5 +44,9 @@ public class MasterSchedule {
 
     public String getScheduleCode() {
         return scheduleCode;
+    }
+
+    public Integer numPeriods() {
+        return schedule.size();
     }
 }

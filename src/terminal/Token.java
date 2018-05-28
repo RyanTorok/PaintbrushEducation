@@ -4,6 +4,7 @@ public class Token {
 
     private String tokenLabel;
     private Type type;
+    private Command.CommandType ctype;
 
     public Type getType() {
         return type;
@@ -21,6 +22,12 @@ public class Token {
 
     public Token(Type t) {
         type = t;
+        ctype = Command.CommandType.LS; //default, in case t == COMMAND
+    }
+
+    public Token(Command.CommandType ctype) {
+        type = Type.COMMAND;
+        this.ctype = ctype;
     }
 
     @Override

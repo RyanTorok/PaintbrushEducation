@@ -1,7 +1,7 @@
 /**
  * Created by 11ryt on 4/1/2017.
  */
-package db;
+/*package db;
 
 import classes.DayRegex;
 import exceptions.OfflineException;
@@ -150,3 +150,4 @@ public class SQL {
         }
     }
 }
+*/

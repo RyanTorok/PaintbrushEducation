@@ -71,7 +71,7 @@ public class SQL {
         rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
             if (rs.getString("Usertype").equalsIgnoreCase("Student"))
-                returnList.add(new Student(rs.getInt("ID"), rs.getString("mac"), rs.getString("username"), rs.getString("password"), rs.getString("first"), rs.getString("middle"), rs.getString("last"), rs.getString("email"), rs.getString("homephone"), rs.getString("cellphone"), rs.getString("address"), rs.getString("schoolCode"), rs.getString("studentID"), rs.getTimestamp("timestamp")));
+            {} //returnList.add(new Student(rs.getInt("ID"), rs.getString("mac"), rs.getString("username"), rs.getString("password"), rs.getString("first"), rs.getString("middle"), rs.getString("last"), rs.getString("email"), rs.getString("homephone"), rs.getString("cellphone"), rs.getString("address"), rs.getString("schoolCode"), rs.getString("studentID"), rs.getTimestamp("timestamp")));
             else if (rs.getString("Usertype").equalsIgnoreCase("Teacher"))
                 returnList.add(new Teacher(rs.getInt("ID"), rs.getString("mac"), rs.getString("username"), rs.getString("password"), rs.getString("first"), rs.getString("middle"), rs.getString("last"), rs.getString("email"), rs.getString("homephone"), rs.getString("cellphone"), rs.getString("address"), rs.getString("schoolCode"), rs.getString("studentID"), rs.getTimestamp("timestamp")));
             else if (rs.getString("Usertype").equalsIgnoreCase("Administrator"))
