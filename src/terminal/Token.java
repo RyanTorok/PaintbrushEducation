@@ -14,6 +14,10 @@ public class Token {
         this.type = type;
     }
 
+    public Command.CommandType getCtype() {
+        return ctype;
+    }
+
     public enum Type {
         COMMAND, ADDRESS, VARIABLE, VALUE, IDENTIFIER, TAG, LPAREN, RPAREN, LBRACE, RBRACE, LBRACKET, RBRACKET, EQUALS, LANGLE, RANGLE, COMMA
     }
@@ -28,6 +32,10 @@ public class Token {
     public Token(Command.CommandType ctype) {
         type = Type.COMMAND;
         this.ctype = ctype;
+    }
+
+    public String getTokenLabel() {
+        return tokenLabel;
     }
 
     @Override

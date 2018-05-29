@@ -1,6 +1,8 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -12,17 +14,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
-import java.security.Key;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -33,6 +32,7 @@ public class Main extends Application {
 
     public static final int BASE_STATE = 0;
     public static final int SLEEP_STATE = 1;
+    public static final int TERMINAL_STATE = 2;
 
     Node top_bar;
     Node sleepBody;
@@ -72,11 +72,6 @@ public class Main extends Application {
         menus[3] = new BarMenu("browse lessons", 3);
         menus[4] = new BarMenu("community", 4);
 
-        for (BarMenu m :menus) {
-            m.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                scrollBody(m.scrollPos, subtitle);
-            });
-        }
         menus[0].setFont(Font.font(menus[0].getFont().getFamily(), FontWeight.BOLD, menus[0].getFont().getSize()));
 
         HBox topbar = new HBox(titles, menus[0], menus[1], menus[2], menus[3], menus[4]);
@@ -118,7 +113,14 @@ public class Main extends Application {
         backgd.setPreserveRatio(true);
         StackPane allBodyPanes = new StackPane(sleepbody, body);
         VBox root = new VBox(topbar, allBodyPanes);
-        StackPane mainArea = new StackPane(backgd,root);
+
+        Terminal term = new Terminal();
+        AnchorPane terminalpane = new AnchorPane(term);
+        terminalpane.setPrefHeight(649);
+        terminalpane.setPrefWidth(999);
+        term.setVisible(false);
+
+        StackPane mainArea = new StackPane(backgd, terminalpane, root);
         primaryStage.setScene(new Scene(mainArea, 999, 649));
 
         primaryStage.getScene().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -132,13 +134,21 @@ public class Main extends Application {
                 return;
             }
             if (event.getCode().equals(KeyCode.SPACE)) {
-                new Terminal().start();
+
+                if (state == BASE_STATE) {
+                    term.setVisible(true);
+                    term.start();
+                    state = TERMINAL_STATE;
+                    ObservableList<Node> workingCollection = FXCollections.observableArrayList(mainArea.getChildren());
+                    Collections.swap(workingCollection, 1, 2);
+                    mainArea.getChildren().setAll(workingCollection);
+                }
             }
-            if (event.getCode().equals(KeyCode.LEFT)) {
+            if (event.getCode().equals(KeyCode.LEFT) && state == BASE_STATE) {
                 if (currentMenu != 0)
                     scrollBody(currentMenu - 1, subtitle);
             }
-            if (event.getCode().equals(KeyCode.RIGHT)) {
+            if (event.getCode().equals(KeyCode.RIGHT) && state == BASE_STATE) {
                 if (currentMenu != menus.length - 1)
                     scrollBody(currentMenu + 1, subtitle);
             }
@@ -147,7 +157,15 @@ public class Main extends Application {
                 mainlogo.setText(caps ? upper : lower);
             }
             if (event.getCode().equals(KeyCode.ESCAPE)) {
+                if (state == BASE_STATE)
                 sleep();
+                else if (state == TERMINAL_STATE) {
+                    term.exit();
+                    state = BASE_STATE;
+                    ObservableList<Node> workingCollection = FXCollections.observableArrayList(mainArea.getChildren());
+                    Collections.swap(workingCollection, 1, 2);
+                    mainArea.getChildren().setAll(workingCollection);
+                }
             }
         });
 
@@ -171,15 +189,9 @@ public class Main extends Application {
         public BarMenu(String text, int order) {
             super (text);
             scrollPos = order;
-            addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-                this.setUnderline(true);
-            });
-            addEventFilter(MouseEvent.MOUSE_EXITED, event -> {
-                this.setUnderline(false);
-            });
-            addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                Main.this.scrollBody(scrollPos, Main.this.subtitle);
-            });
+            addEventHandler(MouseEvent.MOUSE_ENTERED, event -> this.setUnderline(true));
+            addEventFilter(MouseEvent.MOUSE_EXITED, event -> this.setUnderline(false));
+            addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Main.this.scrollBody(scrollPos, Main.this.subtitle));
             setFont(Font.font("Confortaa", 20));
             setFill(Color.WHITE);
             setTextAlignment(TextAlignment.CENTER);
